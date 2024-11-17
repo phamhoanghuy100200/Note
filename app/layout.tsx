@@ -1,6 +1,8 @@
+import { Toaster } from "sonner"
 import type { Metadata } from "next";
 import "./globals.css";
-
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 
 export const metadata: Metadata = {
@@ -16,11 +18,14 @@ export default function RootLayout({
     return (
         <html lang="en" suppressContentEditableWarning>
             <body>
+                <ConvexClientProvider>
+                    <EdgeStoreProvider>
 
+                        <Toaster position="bottom-center" />
+                        {children}
 
-                {children}
-
-
+                    </EdgeStoreProvider>
+                </ConvexClientProvider>
             </body>
         </html>
     );
